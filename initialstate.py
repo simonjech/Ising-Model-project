@@ -45,6 +45,32 @@ def energia(matica):
     E=E_kraj+E_roh+E_stred
     return E
 
+def delta_energia(matica, i, j):
+    """
+    Funkcia počíta zmenu energie po zámene spinu na pozícii (i, j) v mriežke.
+    """
+    n = len(matica)
+    spin = matica[i][j]
+    delta_E = 0
+
+    # Získanie susedov
+    susedia = []
+    if i > 0:
+        susedia.append(matica[i-1][j])  # hore
+    if i < n - 1:
+        susedia.append(matica[i+1][j])  # dole
+    if j > 0:
+        susedia.append(matica[i][j-1])  # vľavo
+    if j < n - 1:
+        susedia.append(matica[i][j+1])  # vpravo
+
+    # Výpočet zmeny energie
+    for sused in susedia:
+        delta_E -= 2 * spin * sused
+
+    return delta_E
+
+
 
 
     

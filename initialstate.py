@@ -1,8 +1,9 @@
 import random 
 import matplotlib.pyplot as plt
 
+J=1
 
-# Tento kód vytvorí náhodnú maticu o rozmere n s prvkami 1 alebo -1.
+# Táto funkcia vytvorí náhodnú maticu o rozmere n s prvkami 1 alebo -1.
 
 def pociatocny_stav(k):
     mriezka=[] 
@@ -22,11 +23,12 @@ def energia(matica):
     H=0
     for i in range (0,n-2):
         for j in range (0,n-2):
-            Energia-=S[i][j]*(S[i-1][j]+S[i][j+1]) #príspevky zo stredu
+            H-=S[i][j]*(S[i-1][j]+S[i][j+1]) #príspevky zo stredu, horného a ľavého okraja. 
     for i in range (0,n-2):
-        Energia-=S[i][n-1]*S[i+1][n-1] #pravý roh
+        H-=S[i][n-1]*S[i+1][n-1] #príspevok z pravého okraja mriežky. 
     for i in range (0,n-2):
-        Energia-=S[n-1][i]*S[n-1][i+1] #príspevky zo spodného okraja mriežky
+        H-=S[n-1][i]*S[n-1][i+1] #príspevky zo spodného okraja mriežky
+    H *=J
     return H 
 
 #funkcia na výpočet zmeny energie po zámene spinu na pozícii (i, j) v mriežke. 
@@ -49,14 +51,20 @@ def delta_energia(matica, i, j):
 
     # Výpočet zmeny energie
     for sused in susedia:
-        delta_E -= 2 * spin * sused
+        delta_E -= 2 *J* spin * sused
 
     return delta_E
 
-def magnetizacia (matica):
+#magnetizácia na jeden spin
+
+def magnetizacia (matica): 
     S=matica
     n=len(matica)
     M=0
+    for i in range (n):
+        for j in range (n):
+            M += S[i][j]
+    return M/(n*n) 
 
 
 

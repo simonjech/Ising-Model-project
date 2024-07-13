@@ -21,15 +21,15 @@ def energia(matica):
     S=matica
     n=len(matica)
     H=0
-    for i in range (0,n-2):
+    for i in range (1,n-1):
         for j in range (0,n-2):
-            H-=S[i][j]*(S[i-1][j]+S[i][j+1]) #príspevky zo stredu, horného a ľavého okraja. 
+            H-=S[i][j]*(S[i+1][j]+S[i][j+1]) #príspevky zo stredu, horného a ľavého okraja. 
     for i in range (0,n-2):
         H-=S[i][n-1]*S[i+1][n-1] #príspevok z pravého okraja mriežky. 
     for i in range (0,n-2):
-        H-=S[n-1][i]*S[n-1][i+1] #príspevky zo spodného okraja mriežky
+        H-=S[0][i]*S[0][i+1] #príspevky z vrchného okraja mriežky. 
     H *=J
-    return H 
+    return H
 
 #funkcia na výpočet zmeny energie po zámene spinu na pozícii (i, j) v mriežke. 
 

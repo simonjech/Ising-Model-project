@@ -1,19 +1,13 @@
 import random 
+import numpy as np
 import matplotlib.pyplot as plt
 
 J=1
 
-# Táto funkcia vytvorí náhodnú maticu o rozmere n s prvkami 1 alebo -1.
+#Funkcia vytvorí náhodnú maticu o rozmere n s prvkami 1 alebo -1. Takáto matica reprezentuje stav feromagnetickej látky. 
 
-def pociatocny_stav(k):
-    mriezka=[] 
-    for i in range(k):
-        riadok = []
-        for j in range(k):    
-            riadok.append(random.choice([1, -1]))  # Náhodné číslo z množiny {-1,1}
-        mriezka.append(riadok)
-    return mriezka
-
+def pociatocny_stav(n):
+    return np.random.choice([-1, 1], size=(n, n))
 
 # Výpočet energie pre stav daný maticou mriežky.  
 
@@ -31,7 +25,7 @@ def energia(matica):
     H *=J
     return H
 
-#funkcia na výpočet zmeny energie po zámene spinu na pozícii (i, j) v mriežke. 
+#Funkcia na výpočet zmeny energie po zámene spinu na pozícii (i, j) v mriežke. 
 
 def delta_energia(matica, i, j):
     n = len(matica)

@@ -14,7 +14,7 @@ def zmena_stavu (matica,T):
     M = copy.deepcopy(S) #matica výsledného stavu
     for i in range(len(matica)):
         for j in range(len(matica)):
-            E_diff = delta_energia(S, i, j)  #zmena energie dE
+            E_diff = delta_energia(S, i, j) #zmena energie dE
             if E_diff <= 0:
                 M[i][j] = -S[i][j]
             elif E_diff > 0 and rd.random() < m.exp(-E_diff / (k * T)):

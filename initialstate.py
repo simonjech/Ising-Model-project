@@ -12,16 +12,19 @@ def pociatocny_stav(n):
 # Výpočet energie pre stav daný maticou mriežky.  
 
 def energia(matica):
-    S=matica
+    # PS není nutné vytvářet novou pomocnou proměnnou
+    #S=matica
     n=len(matica)
     H=0
-    for i in range (1,n-1):
-        for j in range (0,n-2):
-            H-=S[i][j]*(S[i+1][j]+S[i][j+1]) #príspevky zo stredu, horného a ľavého okraja. 
-    for i in range (0,n-2):
-        H-=S[i][n-1]*S[i+1][n-1] #príspevok z pravého okraja mriežky. 
-    for i in range (0,n-2):
-        H-=S[0][i]*S[0][i+1] #príspevky z vrchného okraja mriežky. 
+
+    # PS zde lze dát vše do jednoho cyklu
+    for i in range (0,n-1):
+        for j in range (0,n-1):
+            H-=matica[i,j]*(matica[i+1,j]+matica[i,j+1]) #príspevky zo stredu, horného a ľavého okraja. 
+
+        H-=matica[i,n-1]*matica[i+1,n-1] #príspevok z pravého okraja mriežky. 
+        H-=matica[n-1,i]*matica[n-1,i+1] #príspevky ze spodného okraja mriežky. 
+
     H *=J
     return H
 
@@ -29,23 +32,23 @@ def energia(matica):
 
 def delta_energia(matica, i, j):
     n = len(matica)
-    spin = matica[i][j]
+    spin = matica[i,j]
     delta_E = 0
 
     # Získanie susedov
     susedia = []
     if i > 0:
-        susedia.append(matica[i-1][j])  # hore
+        susedia.append(matica[i-1,j])  # hore
     if i < n - 1:
-        susedia.append(matica[i+1][j])  # dole
+        susedia.append(matica[i+1,j])  # dole
     if j > 0:
-        susedia.append(matica[i][j-1])  # vľavo
+        susedia.append(matica[i,j-1])  # vľavo
     if j < n - 1:
-        susedia.append(matica[i][j+1])  # vpravo
+        susedia.append(matica[i,j+1])  # vpravo
 
     # Výpočet zmeny energie
     for sused in susedia:
-        delta_E -= 2 *J* spin * sused
+        delta_E += 2 *J* spin * sused   # PS tady musí být znaménko +, pokud máte delta_E = E_nová - E_stará
 
     return delta_E
 

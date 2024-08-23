@@ -1,0 +1,26 @@
+from initialstate import pociatocny_stav
+from metropolis import vyvoj_stavu
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+
+#zobrazenie vývinu stavu 
+
+n=300 #rozmer mriežky 
+T=1 # teplota
+r=250 # počet relaxovaných stavov
+A=vyvoj_stavu(pociatocny_stav(n),r,T)
+
+# Vytvorenie animácie
+fig, ax = plt.subplots()
+
+# Inicializácia mriežky
+im = ax.imshow(A[0], cmap='gray')
+ax.set_title(f'Vývoj stavu - Teplota $T={T}$, Počet stavov $r={r}$.')
+
+def update(frame):
+    im.set_array(A[frame])
+    return [im]
+
+ani = animation.FuncAnimation(fig, update, frames=len(A), interval=400, blit=True)
+
+plt.show()

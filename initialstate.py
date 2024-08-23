@@ -56,7 +56,7 @@ def magnetizacia (matica):
     M=0
     for i in range (n):
         for j in range (n):
-            M += matica[i][j]
+            M += matica[i,j]
     return M/(n*n) 
 
 

@@ -1,8 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from initialstate import pociatocny_stav, energia, magnetizacia
-from metropolis import relaxacia, zmena_stavu, vyvoj_stavu
-import matplotlib.animation as animation
+from metropolis import relaxacia, zmena_stavu
 
 #funkcia na výpočet strednej hodnoty energie 
 
@@ -45,14 +44,14 @@ fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
 # Graf energie
 ax1.scatter(Teploty, Energie, color='b')
 ax1.set_xlabel('$T$')
-ax1.set_ylabel('$H$')
+ax1.set_ylabel('$H(T)$')
 ax1.set_title('Závislosť energie od teploty')
 
 
 # Graf magnetizácie 
 ax2.scatter(Teploty, Magnetizacie, color='r')
 ax2.set_xlabel('$T$')
-ax2.set_ylabel('$M$')
+ax2.set_ylabel('$M(T)$')
 ax2.set_title('Závislosť magnetizácie od teploty')
 
 

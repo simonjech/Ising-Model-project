@@ -1,6 +1,4 @@
-import random 
 import numpy as np
-import matplotlib.pyplot as plt
 
 J=1
 
@@ -13,7 +11,6 @@ def pociatocny_stav(n):
 
 def energia(matica):
     # PS není nutné vytvářet novou pomocnou proměnnou
-    #S=matica
     n=len(matica)
     H=0
 
@@ -55,12 +52,11 @@ def delta_energia(matica, i, j):
 #magnetizácia na jeden spin
 
 def magnetizacia (matica): 
-    S=matica
     n=len(matica)
     M=0
     for i in range (n):
         for j in range (n):
-            M += S[i][j]
+            M += matica[i][j]
     return M/(n*n) 
 
 

@@ -17,7 +17,7 @@ def zmena_stavu (matica,T):
                     M[i,j] = -M[i,j]
                 elif E_diff > 0 and T > 0 and rd.random() < m.exp(-E_diff / (k * T)): # PS - ošetření případu, kdy T = 0
                     M[i,j] = -M[i,j]
-    elif T==0: #pripad T=0
+    elif T==0: #pripad T=0 
         for i in range(len(matica)):
             for j in range(len(matica)):
                 E_diff = delta_energia(M, i, j)
